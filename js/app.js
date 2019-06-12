@@ -3,8 +3,10 @@ const card = document.querySelector('.card');
 const details = document.querySelector('.details');
 
 const updateUI = data => {
-  const cityDetails = data.cityDetails;
-  const weather = data.weather;
+  //   const cityDetails = data.cityDetails;
+  //   const weather = data.weather;
+
+  const { cityDetails, weather } = data; // Object destructuring
 
   details.innerHTML = `
   <h5 class="my-3">${cityDetails.EnglishName}</h5>
@@ -37,6 +39,9 @@ cityForm.addEventListener('submit', e => {
   cityForm.reset();
 
   updateCity(city)
-    .then(data => updateUI(data))
+    .then(data => {
+      console.log(data);
+      return updateUI(data);
+    })
     .catch(err => console.log(err.message));
 });
